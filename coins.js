@@ -1,28 +1,21 @@
-Instructions
-
-Write a program that will convert a dollar amount to the number of coins that make up the amount. Use the common American coins of quarters, dimes, nickels, and pennies.
-
-/*
-  Input: 0.67
-  Output:
-  {
-    quarters: 2,
-    dimes: 1,
-    nickels: 1,
-    pennies: 2
-  }
-
-*/
-var coins = {"quarter":25, "dime":10, "nickel":5, "Penny":1 }
-
-function coinCounter () {
-  // Initialize a JavaScript object to hold the coins
+  function coinCounter (num) {
   var coinPurse = {};
-
-  coinPurse.quarters = 0;
+    if (num >= 25) {
+      coinPurse.quarters = Math.floor(num/25);
+      num = (num - (coinPurse.quarters*25));
+    }
+    if (num >= 10 || num <= 24) {
+      coinPurse.dimes = Math.floor(num/10);
+      num = (num - (coinPurse.dimes*10));
+    }
+    if (num >= 5 || num <=9) {
+      coinPurse.nickels = Math.floor(num/5);
+      num = (num - (coinPurse.nickels*5));
+    }
+    coinPurse.pennies = num;
 
   return coinPurse;
 }
 
-var coins = coinCounter()
-console.log();
+var coins = coinCounter(74);
+console.log(coins);
